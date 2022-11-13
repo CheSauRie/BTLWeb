@@ -10,10 +10,10 @@ const adminRouter = express.Router();
 userRouter.post("/login", login)
 //router danh cho admin
 adminRouter.post("/register", authenticate, checkAdmin, createAccount);
-adminRouter.get("/getallaccount", authenticate, checkAdmin, getAllAccount)
-adminRouter.get("/getdetailaccount/:id", authenticate, checkAdmin, getDetailAccount)
-adminRouter.post("/updateaccount/:id", authenticate, checkAdmin, updateAccount)
-adminRouter.post("/deleteaccount/:id", authenticate, checkAdmin, deleteUser)
+adminRouter.get("/get-all-account", authenticate, checkAdmin, getAllAccount)
+adminRouter.get("/get-detail-account/:id", authenticate, checkAdmin, getDetailAccount)
+adminRouter.post("/update-account/:id", authenticate, checkAdmin, updateAccount)
+adminRouter.post("/delete-account/:id", authenticate, checkAdmin, deleteUser)
 module.exports = {
     userRouter,
     adminRouter
