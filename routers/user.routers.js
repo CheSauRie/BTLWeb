@@ -5,13 +5,16 @@ const { authenticate } = require('../middlewares/auth/authenticate');
 const { checkAdmin } = require('../middlewares/auth/authorize');
 
 const userRouter = express.Router();
-
-userRouter.post("/register", authenticate, checkAdmin, createAccount);
+const adminRouter = express.Router();
+//router login
 userRouter.post("/login", login)
-userRouter.get("/getallaccount", authenticate, checkAdmin, getAllAccount)
-userRouter.get("/getdetailaccount/:id", authenticate, checkAdmin, getDetailAccount)
-userRouter.post("/updateaccount/:id", authenticate, checkAdmin, updateAccount)
-userRouter.post("/deleteaccount/:id", authenticate, checkAdmin, deleteUser)
+//router danh cho admin
+adminRouter.post("/register", authenticate, checkAdmin, createAccount);
+adminRouter.get("/getallaccount", authenticate, checkAdmin, getAllAccount)
+adminRouter.get("/getdetailaccount/:id", authenticate, checkAdmin, getDetailAccount)
+adminRouter.post("/updateaccount/:id", authenticate, checkAdmin, updateAccount)
+adminRouter.post("/deleteaccount/:id", authenticate, checkAdmin, deleteUser)
 module.exports = {
-    userRouter
+    userRouter,
+    adminRouter
 }
