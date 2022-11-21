@@ -56,7 +56,11 @@ const getDetailAccount = async (req, res) => {
                 id,
             },
         });
-        res.status(200).send(detailUser);
+        if (detailUser) {
+            res.status(200).send(detailUser);
+        } else {
+            res.status(400).json({ message: "User not exist" })
+        }
     } catch (error) {
         res.status(500).send(error);
     }
@@ -71,18 +75,21 @@ const updateAccount = async (req, res) => {
                 id,
             },
         });
-        //tạo ra một chuỗi ngẫu nhiên
-        const salt = bcrypt.genSaltSync(10);
-        //mã hóa salt + password 
-        const hashPassword = bcrypt.hashSync(password, salt)
-
-        detailAccount.name = name;
-        detailAccount.email = email;
-        detailAccount.password = hashPassword;
-        detailAccount.type = type
-        await detailAccount.save();
-
-        res.status(200).send(detailAccount);
+        if (detailAccount) {
+            //tạo ra một chuỗi ngẫu nhiên
+            const salt = bcrypt.genSaltSync(10);
+            //mã hóa salt + password 
+            const hashPassword = bcrypt.hashSync(password, salt)
+            detailAccount.name = name;
+            detailAccount.email = email;
+            detailAccount.password = hashPassword;
+            detailAccount.type = type
+            await detailAccount.save();
+            res.status(200).send(detailAccount);
+        }
+        else {
+            res.status(400).send({ message: "user not exist" })
+        }
     } catch (error) {
         res.status(500).send(error);
     }
@@ -91,12 +98,22 @@ const updateAccount = async (req, res) => {
 const deleteUser = async (req, res) => {
     const { id } = req.params;
     try {
-        await User.destroy({
+        const detailAccount = await User.findOne({
             where: {
                 id,
             },
         });
-        res.status(200).send("xóa thành công");
+        if (detailAccount) {
+            await User.destroy({
+                where: {
+                    id,
+                },
+            });
+            res.status(200).send("xóa thành công");
+        }
+        else {
+            res.status(400).send({ message: "user not exist" })
+        }
     } catch (error) {
         res.status(500).send(error);
     }
@@ -117,7 +134,7 @@ const login = async (req, res) => {
         if (isAuth) {
             const token = jwt.sign({ email: user.email, type: user.type }, "quantrinh", { expiresIn: 10 * 60 })
 
-            res.status(200).send({ message: "đăng nhập thành công", token })
+            res.status(200).send({ message: "đăng nhập thành công", token, type: user.type })
         } else {
             res.status(500).send({ message: "tài khoản mật khẩu không đúng " })
         }

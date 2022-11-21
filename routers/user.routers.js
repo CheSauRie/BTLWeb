@@ -12,8 +12,8 @@ userRouter.post("/login", login)
 adminRouter.post("/register", authenticate, checkAdmin, createAccount);
 adminRouter.get("/get-all-account", authenticate, checkAdmin, getAllAccount)
 adminRouter.get("/get-detail-account/:id", authenticate, checkAdmin, getDetailAccount)
-adminRouter.post("/update-account/:id", authenticate, checkAdmin, updateAccount)
-adminRouter.post("/delete-account/:id", authenticate, checkAdmin, deleteUser)
+adminRouter.put("/update-account/:id", authenticate, checkAdmin, updateAccount)
+adminRouter.delete("/delete-account/:id", authenticate, checkAdmin, deleteUser)
 module.exports = {
     userRouter,
     adminRouter
