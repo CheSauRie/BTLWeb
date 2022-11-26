@@ -125,7 +125,7 @@ const login = async (req, res) => {
     // tìm ra user đăng nhập dựa trên email
     const user = await User.findOne({
         where: {
-            email,
+            email
         },
     })
     if (user) {
@@ -133,7 +133,6 @@ const login = async (req, res) => {
         const isAuth = bcrypt.compareSync(password, user.password);
         if (isAuth) {
             const token = jwt.sign({ email: user.email, type: user.type }, "quantrinh", { expiresIn: 10 * 60 })
-
             res.status(200).send({ message: "đăng nhập thành công", token, type: user.type })
         } else {
             res.status(500).send({ message: "tài khoản mật khẩu không đúng " })
@@ -142,10 +141,6 @@ const login = async (req, res) => {
         res.status(404).send({ message: "không tìm thấy email" })
     }
 }
-
-
-
-
 module.exports = {
     createAccount,
     getAllAccount,

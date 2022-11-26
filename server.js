@@ -2,11 +2,14 @@ const express = require("express");
 const path = require("path");
 const { sequelize } = require("./models");
 const { rootRouter } = require("./routers");
+const cors = require('cors')
 const app = express();
 
 // cài ứng dụng sử dụng kiểu json
 app.use(express.json());
 
+//alow cors
+app.use(cors())
 // cài static file
 const publicPathDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicPathDirectory));
