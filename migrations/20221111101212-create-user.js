@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      code: {
+        type: Sequelize.STRING,
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -19,15 +22,18 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      address: {
+        type: Sequelize.STRING
+      },
       type: {
         type: Sequelize.STRING
       },
       createdAt: {
-        allowNull: false,
+
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+
         type: Sequelize.DATE
       }
     });

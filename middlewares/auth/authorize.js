@@ -13,7 +13,7 @@
 //middleware: check user.type có phải là ban điều hành không nếu là đúng mới cho tạo account mới 
 const checkAdmin = (req, res, next) => {
     const { user } = req;
-    if (user.type === "Ban điều hành") {
+    if (user.type === "Admin") {
         next();
     } else {
         res.status(403).send("Khong co quyen thao tac")

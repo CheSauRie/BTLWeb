@@ -16,13 +16,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       productLine_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        // references: {
+        //   model: "productlines",
+        //   key: "id"
+        // }
       },
       price: {
-        type: Sequelize.INTEGER
-      },
-      unit: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       description: {
         type: Sequelize.TEXT
@@ -30,21 +31,10 @@ module.exports = {
       thumbnail: {
         type: Sequelize.STRING
       },
-      warranty_time: {
-        type: Sequelize.STRING
-      },
-      product_history_id: {
-        type: Sequelize.INTEGER
-      },
-      stock_id: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });
