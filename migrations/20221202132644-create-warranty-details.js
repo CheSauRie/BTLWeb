@@ -9,22 +9,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      warranty_id: {
-        type: Sequelize.INTEGER
-      },
       product_id: {
+        references: {
+          model: "products",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
-      status_id: {
-        type: Sequelize.INTEGER
+      status_warranty: {
+        type: Sequelize.STRING
       },
       quantity: {
-        type: Sequelize.INTEGER
-      },
-      number_of_warranty_time: {
-        type: Sequelize.INTEGER
-      },
-      customer_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {

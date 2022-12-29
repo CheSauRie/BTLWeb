@@ -12,7 +12,7 @@ module.exports = {
       code: {
         type: Sequelize.STRING,
       },
-      name: {
+      username: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -25,7 +25,10 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      type: {
+      role: {
+        type: Sequelize.STRING
+      },
+      phone: {
         type: Sequelize.STRING
       },
       createdAt: {

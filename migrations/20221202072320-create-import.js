@@ -10,6 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       stock_id: {
+        references: {
+          model: "stocks",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       createdAt: {

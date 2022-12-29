@@ -10,6 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       customer_id: {
+        references: {
+          model: "customers",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       createdAt: {

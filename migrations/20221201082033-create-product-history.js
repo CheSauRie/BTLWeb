@@ -10,27 +10,41 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       agent_id: {
+        references: {
+          model: "users",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       factory_id: {
+        references: {
+          model: "users",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       service_center_id: {
+        references: {
+          model: "users",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       place: {
         type: Sequelize.STRING
       },
-      status_id: {
-        type: Sequelize.INTEGER
-      },
-      stock_id: {
-        type: Sequelize.INTEGER
-      },
       product_id: {
+        references: {
+          model: "products",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       customer_id: {
+        references: {
+          model: "customers",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       description: {
@@ -43,7 +57,10 @@ module.exports = {
       updatedAt: {
 
         type: Sequelize.DATE
-      }
+      },
+      status: {
+        type: Sequelize.STRING
+      },
     });
   },
   async down(queryInterface, Sequelize) {

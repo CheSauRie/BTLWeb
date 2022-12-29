@@ -10,23 +10,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      pl_name: {
         type: Sequelize.STRING
       },
-      description: {
+      pl_description: {
         type: Sequelize.TEXT
-      },
-      status_id: {
-        type: Sequelize.INTEGER,
-        // references: {
-        //   model: "status",
-        //   key: "id"
-        // }
       },
       warranty_time: {
         type: Sequelize.STRING
+      },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        type: Sequelize.DATE
       }
-
     });
   },
   async down(queryInterface, Sequelize) {

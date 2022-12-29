@@ -10,13 +10,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       order_id: {
+        references: {
+          model: "orders",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       product_id: {
+        references: {
+          model: "products",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       quantity: {
         type: Sequelize.INTEGER
+      },
+      status: {
+        type: Sequelize.STRING
       },
       createdAt: {
         type: Sequelize.DATE

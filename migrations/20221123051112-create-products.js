@@ -15,12 +15,12 @@ module.exports = {
       code: {
         type: Sequelize.STRING
       },
-      productLine_id: {
+      productline_id: {
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: "productlines",
-        //   key: "id"
-        // }
+        references: {
+          model: "productlines",
+          key: "id"
+        }
       },
       price: {
         type: Sequelize.FLOAT
@@ -29,6 +29,9 @@ module.exports = {
         type: Sequelize.TEXT
       },
       thumbnail: {
+        type: Sequelize.STRING
+      },
+      status: {
         type: Sequelize.STRING
       },
       createdAt: {

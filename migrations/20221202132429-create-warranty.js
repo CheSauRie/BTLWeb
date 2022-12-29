@@ -10,9 +10,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       service_center_id: {
+        references: {
+          model: "users",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       agent_id: {
+        references: {
+          model: "users",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
       createdAt: {

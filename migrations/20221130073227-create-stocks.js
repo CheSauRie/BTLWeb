@@ -15,12 +15,14 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      factory_id: {
+      user_id: {
+        references: {
+          model: "users",
+          key: "id"
+        },
         type: Sequelize.INTEGER
       },
-      agent_id: {
-        type: Sequelize.INTEGER
-      }
+
     });
   },
   async down(queryInterface, Sequelize) {

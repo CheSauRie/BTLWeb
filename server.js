@@ -8,7 +8,11 @@ const app = express();
 
 // cài ứng dụng sử dụng kiểu json
 app.use(express.json());
-
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true,
+})
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 //alow cors
@@ -22,10 +26,9 @@ app.use("/api/v1", rootRouter);
 
 // lắng nghe sự kiện kết nối
 app.listen(3001, async () => {
-    console.log("App listening on http://localhost:3000");
+    console.log("App listening on http://localhost:3001");
     try {
         await sequelize.authenticate();
-        console.log("Connection has been established successfully.");
     } catch (error) {
         console.error("Unable to connect to the database:", error);
     }
