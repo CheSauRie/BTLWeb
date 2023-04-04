@@ -159,6 +159,19 @@ const getProByAgent = async (req, res) => {
     }
 }
 
+const getProBySer = async (req, res) => {
+    try {
+        const results = await sequelize.query(`SELECT users.username,products.name,products.code,users.address,producthistories.description,producthistories.createdAt FROM users
+        inner join producthistories
+        on users.id = producthistories.service_center_id
+        inner join products
+        on producthistories.product_id = products.id`, { type: QueryTypes.SELECT, plain: false })
+        res.status(201).json(results)
+    } catch (e) {
+        res.status(500).send({ message: "Lỗi" })
+    }
+}
+
 const getServiceCenterList = async (req, res) => {
     try {
         const results = await sequelize.query(`SELECT * FROM production_move.users
@@ -177,5 +190,6 @@ module.exports = {
     getProByStatus,
     getProByFac,
     getProByAgent,
-    getServiceCenterList
+    getServiceCenterList,
+    getProBySer
 }

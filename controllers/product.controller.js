@@ -13,7 +13,7 @@ const createProduct = async (req, res) => {
         if (checkExistProduct) {
             res.status(500).send("Sản phẩm này đã tồn tại")
         } else {
-            const newProduct = await Products.create({ name, code, productline_id, price, description, status: "Mới sản xuất" });
+            const newProduct = await Products.create({ name: name, code: code, productline_id: productline_id, price: price, description: description, status: "Mới sản xuất" });
             res.status(201).send({ newProduct });
         }
     } catch (error) {
@@ -24,7 +24,7 @@ const createProduct = async (req, res) => {
 //Lấy danh sách sản phẩm theo danh mục
 const getAllProduct = async (req, res) => {
     try {
-        const results = await sequelize.query(`SELECT products.id,name,code,price,status,pl_name,warranty_time,description
+        const results = await sequelize.query(`SELECT products.id,name,code,price,status,pl_name,warranty_time,description,thumbnail
         FROM products
         inner join productlines
         on products.productline_id = productlines.id`, { type: QueryTypes.SELECT, plain: false })
@@ -105,7 +105,6 @@ const deleteProduct = async (req, res) => {
 const uploadImage = async (req, res) => {
     const { id } = req.params;
     const { file } = req;
-    console.log(file);
     const urlImage = `http://localhost:3001/${file.path}`
     try {
         const detailProduct = await Products.findOne({

@@ -30,7 +30,7 @@ const upload = multer({
 const productRouter = express.Router();
 
 productRouter.post("/", createProduct)
-productRouter.post("/upload-image/:id", upload.single("thumbnail"), uploadImage)
+productRouter.put("/upload-image/:id", upload.single("thumbnail"), uploadImage)
 productRouter.get("/get-all-product", getAllProduct)
 productRouter.get("/get-detail-product/:id", getDetailProduct)
 productRouter.put("/update-product/:id", updateProduct)

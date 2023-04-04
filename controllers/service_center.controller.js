@@ -37,7 +37,7 @@ const giveProToAgent = async (req, res) => {
         const pro = await WarrantyDetails.findOne({ where: { product_id } })
         pro.status_warranty = "Fixed"
         await pro.save()
-        const newHistory = await ProductHistory.create({ service_center_id: user.id, place: user.address, description: "Gửi lại sản phẩm đẫ sửa xong" })
+        const newHistory = await ProductHistory.create({ service_center_id: user.id, product_id: product_id, place: user.address, description: "Gửi lại sản phẩm đẫ sửa xong" })
         res.status(200).send(pro)
     } catch (error) {
         res.status(500).send({ message: "Lỗi r cu" })
@@ -52,7 +52,7 @@ const giveProToAgentCannotFix = async (req, res) => {
         const pro = await WarrantyDetails.findOne({ where: { product_id } })
         pro.status_warranty = "Cannot Fix"
         await pro.save()
-        const newHistory = await ProductHistory.create({ service_center_id: user.id, place: user.address, description: "Gửi lại sản phẩm đẫ sửa xong" })
+        const newHistory = await ProductHistory.create({ service_center_id: user.id, product_id: product_id, place: user.address, description: "Gửi lại sản phẩm không thể sửa" })
         res.send(pro)
     } catch (error) {
         res.status(500).send(error)
@@ -74,7 +74,7 @@ const giveProToFac = async (req, res) => {
         product.status = "Recall"
         await product.save()
         await pro.save()
-        const newHistory = await ProductHistory.create({ service_center_id: user.id, place: user.address, description: "Trung tâm báo sản phẩm cần triệu hồi" })
+        const newHistory = await ProductHistory.create({ service_center_id: user.id, place: user.address, description: "Gửi lại sản phẩm cần triệu hồi" })
         res.status(200).send(product)
     } catch (error) {
         res.status(500).send(error)

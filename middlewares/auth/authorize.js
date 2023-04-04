@@ -13,10 +13,10 @@
 //middleware: check user.type có phải là ban điều hành không nếu là đúng mới cho tạo account mới 
 const checkAdmin = (req, res, next) => {
     const { user } = req;
-    if (user.type === "Admin") {
+    if (user.role === "Ban điều hành") {
         next();
     } else {
-        res.status(403).send("Khong co quyen thao tac")
+        res.status(403).send("Không có quyền thao tác")
     }
 }
 module.exports = {
